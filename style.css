@@ -1,0 +1,14 @@
+body {
+  margin: 20px;
+  font-family: sans-serif;
+}
+
+input, button {
+  padding: 8px;
+  margin: 5px 0;
+}
+
+#resultChart {
+  width: 400px;
+  height: 200px;
+}

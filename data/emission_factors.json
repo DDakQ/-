@@ -1,0 +1,6 @@
+{
+  "car": 0.21,
+  "bus": 0.05,
+  "train": 0.03,
+  "electricity_kwh": 0.424
+}
