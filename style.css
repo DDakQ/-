@@ -8,7 +8,65 @@ input, button {
   margin: 5px 0;
 }
 
+/* 기본 차트 크기 */
 #resultChart {
   width: 400px;
   height: 200px;
+}
+
+/* ---------------------------- */
+/* 카테고리 트리 스타일 */
+/* ---------------------------- */
+
+.category {
+  margin-bottom: 12px;
+}
+
+/* 카테고리 버튼 */
+.cat-btn {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.cat-btn:hover {
+  background: #e4e4e4;
+}
+
+/* 하위 항목 컨테이너: 접힌 상태 */
+.cat-children {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  padding-left: 10px;
+}
+
+/* 펼쳐진 상태 */
+.cat-children.open {
+  max-height: 500px; /* 충분히 여유를 줌 */
+  margin-top: 5px;
+}
+
+/* 하위 input 스타일 */
+.factor-input {
+  display: block;
+  margin: 6px 0;
+  padding: 7px;
+  width: 95%;
+}
+
+/* 합계 표시 */
+#total-result {
+  font-size: 1.4rem;
+  margin-top: 15px;
+  font-weight: bold;
+}
+#total-result span {
+  color: #2a9d8f;
 }

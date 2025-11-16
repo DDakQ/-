@@ -1,11 +1,50 @@
-<input type="number" id="car-km" placeholder="하루 자동차 이동 거리(km)">
-<button id="calc-btn">계산하기</button>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>탄소 배출량 계산기</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
 
-<BrowserRouter basename={process.env.PUBLIC_URL}> 
-</BrowserRouter>
+    <div class="category">
+      <button class="cat-btn" data-cat="move">이동</button>
+      <div class="cat-children" id="cat-move">
+        <input type="number" class="factor-input" data-factor-id="move1" placeholder="이동 항목 1">
+        <input type="number" class="factor-input" data-factor-id="move2" placeholder="이동 항목 2">
+        <input type="number" class="factor-input" data-factor-id="move3" placeholder="이동 항목 3">
+      </div>
+    </div>
+    
+    <div class="category">
+      <button class="cat-btn" data-cat="food">음식</button>
+      <div class="cat-children" id="cat-food">
+        <input type="number" class="factor-input" data-factor-id="food1" placeholder="음식 항목 1">
+        <input type="number" class="factor-input" data-factor-id="food2" placeholder="음식 항목 2">
+        <input type="number" class="factor-input" data-factor-id="food3" placeholder="음식 항목 3">
+      </div>
+    </div>
+    
+    <div class="category">
+      <button class="cat-btn" data-cat="device">전자기기 사용</button>
+      <div class="cat-children" id="cat-device">
+        <input type="number" class="factor-input" data-factor-id="device1" placeholder="전자기기 항목 1">
+        <input type="number" class="factor-input" data-factor-id="device2" placeholder="전자기기 항목 2">
+        <input type="number" class="factor-input" data-factor-id="device3" placeholder="전자기기 항목 3">
+      </div>
+    </div>
+    <button id="calc-btn">계산하기</button>
+    
+    <div id="result"></div>
+    <div id="total-result" style="font-size: 1.5rem; margin-top: 20px; font-weight: bold;"></div>
+    
+    <canvas id="resultChart"></canvas>
+    
+    <script src="libs/chart.min.js"></script>
+    <script src="script.js"></script>
 
-<div id="result"></div>
-
-<canvas id="resultChart"></canvas>
-<script src="libs/chart.min.js"></script>
-<script src="script.js"></script>
+</body>
+</html>
