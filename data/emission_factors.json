@@ -1,6 +1,11 @@
 {
-  "car": 0.21,
-  "bus": 0.05,
-  "train": 0.03,
-  "electricity_kwh": 0.424
+  "move1": 0.21,
+  "move2": 0.15,
+  "move3": 0.05,
+  "food1": 1.2,
+  "food2": 0.5,
+  "food3": 0.3,
+  "device1": 0.02,
+  "device2": 0.03,
+  "device3": 0.04
 }
