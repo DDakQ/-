@@ -4,46 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>탄소 배출량 계산기</title>
-    
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
 
-    <div class="category">
-      <button class="cat-btn" data-cat="move">이동</button>
-      <div class="cat-children" id="cat-move">
-        <input type="number" class="factor-input" data-factor-id="move1" placeholder="이동 항목 1">
-        <input type="number" class="factor-input" data-factor-id="move2" placeholder="이동 항목 2">
-        <input type="number" class="factor-input" data-factor-id="move3" placeholder="이동 항목 3">
-      </div>
-    </div>
-    
-    <div class="category">
-      <button class="cat-btn" data-cat="food">음식</button>
-      <div class="cat-children" id="cat-food">
-        <input type="number" class="factor-input" data-factor-id="food1" placeholder="음식 항목 1">
-        <input type="number" class="factor-input" data-factor-id="food2" placeholder="음식 항목 2">
-        <input type="number" class="factor-input" data-factor-id="food3" placeholder="음식 항목 3">
-      </div>
-    </div>
-    
-    <div class="category">
-      <button class="cat-btn" data-cat="device">전자기기 사용</button>
-      <div class="cat-children" id="cat-device">
-        <input type="number" class="factor-input" data-factor-id="device1" placeholder="전자기기 항목 1">
-        <input type="number" class="factor-input" data-factor-id="device2" placeholder="전자기기 항목 2">
-        <input type="number" class="factor-input" data-factor-id="device3" placeholder="전자기기 항목 3">
-      </div>
-    </div>
-    <button id="calc-btn">계산하기</button>
-    
-    <div id="result"></div>
-    <div id="total-result" style="font-size: 1.5rem; margin-top: 20px; font-weight: bold;"></div>
-    
-    <canvas id="resultChart"></canvas>
-    
-    <script src="libs/chart.min.js"></script>
+    <div class="container">
+        <button id="reset-btn" title="초기화">&#8635;</button>
+        <h1>🌱 탄소 배출량 계산기</h1>
+
+        <div id="category-container">
+            <div class="category">
+                <button class="cat-btn" data-cat="move">🚗 이동</button>
+                <div class="cat-children" id="cat-move">
+                    <input type="number" class="factor-input" data-factor-id="bus" placeholder="버스 (km)">
+                    <input type="number" class="factor-input" data-factor-id="car" placeholder="자가용 (km)">
+                </div>
+            </div>
+            
+            <div class="category">
+                <button class="cat-btn" data-cat="food">🍔 음식 섭취</button>
+                <div class="cat-children" id="cat-food">
+                    <input type="number" class="factor-input" data-factor-id="hamburger" placeholder="햄버거 (개)">
+                    <input type="number" class="factor-input" data-factor-id="egg" placeholder="달걀 (개)">
+                    <input type="number" class="factor-input" data-factor-id="beef" placeholder="소고기 (100g)">
+                    <input type="number" class="factor-input" data-factor-id="pork" placeholder="돼지고기 (100g)">
+                    <input type="number" class="factor-input" data-factor-id="chicken" placeholder="닭고기 (100g)">
+                    <input type="number" class="factor-input" data-factor-id="rice" placeholder="쌀밥 (공기)">
+                    <input type="number" class="factor-input" data-factor-id="white bread" placeholder="흰빵 (조각)">
+                    <input type="number" class="factor-input" data-factor-id="milk" placeholder="우유 (컵)">
+                    <input type="number" class="factor-input" data-factor-id="apple" placeholder="사과 (개)">
+                    <input type="number" class="factor-input" data-factor-id="banana" placeholder="바나나 (개)">
+                    <input type="number" class="factor-input" data-factor-id="fried chicken" placeholder="프라이드 치킨 (마리)">
+                    <input type="number" class="factor-input" data-factor-id="latte" placeholder="라떼 (잔)">
+                    <input type="number" class="factor-input" data-factor-id="ramen" placeholder="라면 (개)">
+                    <input type="number" class="factor-input" data-factor-id="snack" placeholder="과자 (봉지)">
+                </div>
+            </div>
+            
+            <div class="category">
+                <button class="cat-btn" data-cat="device">💻 전자기기 사용</button>
+                <div class="cat-children" id="cat-device">
+                    <input type="number" class="factor-input" data-factor-id="smartphone" placeholder="스마트폰 (시간)">
+                    <input type="number" class="factor-input" data-factor-id="laptop" placeholder="노트북 (시간)">
+                    <input type="number" class="factor-input" data-factor-id="PC" placeholder="데스크탑 PC (시간)">
+                </div>
+            </div>
+        </div> <button id="calc-btn">계산하기</button>
+        
+        <div id="results-wrapper" class="hidden">
+            <div id="total-result"></div>
+        
+            <div id="advice-container">
+                <h3>💡 맞춤 조언</h3>
+                <p id="advice-text"></p>
+            </div>
+            
+            <canvas id="resultChart"></canvas>
+        </div>
+
+    </div> <script src="libs/chart.min.js"></script>
     <script src="script.js"></script>
 
 </body>

@@ -1,72 +1,214 @@
+/* 전역 box-sizing 설정 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
-  margin: 20px;
+  margin: 0;
   font-family: sans-serif;
+  background-color: #f4f7f6; /* 배경색 변경 */
+  color: #333;
+}
+
+/* 전체를 감싸는 컨테이너 */
+.container {
+  max-width: 800px;
+  margin: 25px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  position: relative; /* ★ 초기화 버튼 위치의 기준점 */
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 30px;
 }
 
 input, button {
   padding: 8px;
   margin: 5px 0;
-}
-
-/* 기본 차트 크기 */
-#resultChart {
-  width: 400px;
-  height: 200px;
+  font-family: inherit; /* 폰트 상속 */
 }
 
 /* ---------------------------- */
-/* 카테고리 트리 스타일 */
+/* 카테고리 (Flex 컨테이너) */
 /* ---------------------------- */
+
+#category-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* 카테고리 사이 간격 */
+  margin-bottom: 25px;
+}
 
 .category {
-  margin-bottom: 12px;
+  flex: 1; /* 모든 카테고리가 동일한 너비를 가짐 */
+  margin-bottom: 0; /* 기존 마진 제거 */
 }
 
 /* 카테고리 버튼 */
 .cat-btn {
   width: 100%;
-  padding: 10px;
+  padding: 12px 10px;
   text-align: left;
-  font-size: 1rem;
+  font-size: 1.05rem; /* 폰트 크기 살짝 키움 */
+  font-weight: 600;
   cursor: pointer;
-  background: #f0f0f0;
-  border: none;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
   border-radius: 6px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  color: #495057;
 }
 
 .cat-btn:hover {
-  background: #e4e4e4;
+  background: #f1f3f5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-/* 하위 항목 컨테이너: 접힌 상태 */
+/* 카테고리가 열렸을 때 버튼 스타일 */
+.cat-btn.active {
+  background-color: #e9ecef;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* 하위 항목 컨테이너 */
 .cat-children {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease;
-  padding-left: 10px;
+  transition: max-height 0.35s ease-out;
+  padding: 0; /* 패딩은 open 상태에서만 적용 */
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: #fff;
 }
 
 /* 펼쳐진 상태 */
 .cat-children.open {
-  max-height: 500px; /* 충분히 여유를 줌 */
-  margin-top: 5px;
+  max-height: 500px;
+  padding: 15px; /* 열렸을 때 내부 패딩 */
 }
 
 /* 하위 input 스타일 */
 .factor-input {
   display: block;
-  margin: 6px 0;
-  padding: 7px;
-  width: 95%;
+  margin: 8px 0;
+  padding: 10px;
+  width: 100%; /* 100%로 변경 (box-sizing 덕분) */
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.factor-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+/* ---------------------------- */
+/* 계산 버튼 및 결과 */
+/* ---------------------------- */
+
+/* 계산하기 버튼 (요청대로 크게 수정) */
+#calc-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #007bff; /* 메인 색상 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#calc-btn:hover {
+  background-color: #0056b3; /* 호버 시 어둡게 */
+}
+
+#calc-btn:active {
+  transform: scale(0.99); /* 클릭 시 살짝 작아짐 */
+}
+
+/* 결과 영역 (초기 숨김) */
+#results-wrapper.hidden {
+  display: none;
+}
+
+#results-wrapper {
+  margin-top: 30px;
+  border-top: 2px solid #f0f0f0;
+  padding-top: 20px;
 }
 
 /* 합계 표시 */
 #total-result {
-  font-size: 1.4rem;
-  margin-top: 15px;
+  font-size: 1.6rem;
+  margin-bottom: 25px; /* 위쪽 마진 대신 아래쪽 마진 */
   font-weight: bold;
+  text-align: center;
+  color: #2c3e50;
 }
 #total-result span {
   color: #2a9d8f;
+}
+
+/* 조언 영역 스타일 */
+#advice-container {
+  margin-top: 0; /* 상위 래퍼가 마진 관리 */
+  margin-bottom: 25px; /* 차트와의 간격 */
+  padding: 15px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+#advice-container h3 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+#advice-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #343a40;
+}
+
+/* 기본 차트 크기 (반응형으로 수정) */
+#resultChart {
+  width: 100% !important; /* !important로 인라인 스타일 덮어쓰기 */
+  max-width: 600px;
+  height: auto !important; /* 높이는 자동으로 조절 */
+  margin: 0 auto;
+  display: block;
+}
+
+#reset-btn {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  background: none;
+  border: none;
+  font-size: 1.7rem; /* 아이콘 크기 */
+  color: #adb5bd; /* 옅은 회색 */
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  border-radius: 50%;
+  transition: color 0.2s ease, transform 0.3s ease;
+}
+
+#reset-btn:hover {
+  color: #343a40; /* 진한 색 */
+  transform: rotate(180deg); /* 회전 효과 */
 }
