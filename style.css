@@ -212,3 +212,41 @@ input, button {
   color: #343a40; /* 진한 색 */
   transform: rotate(180deg); /* 회전 효과 */
 }
+
+/* 화면 너비가 700px 이하일 때 적용 (태블릿/모바일) */
+@media (max-width: 700px) {
+  .container {
+    /* 모바일에서는 좌우 여백을 줄임 */
+    margin: 10px;
+    padding: 20px 15px;
+  }
+
+  /* ★ 핵심: 카테고리 컨테이너를 세로로 쌓음 */
+  #category-container {
+    flex-direction: column; /* 가로(row) 대신 세로(column)로 쌓기 */
+    gap: 12px; /* 세로 간격 */
+  }
+
+  /* 컨테이너 너비 꽉 차게 */
+  .category {
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 1.6rem; /* 모바일에서 제목 폰트 살짝 줄임 */
+    margin-bottom: 25px;
+  }
+
+  /* 계산하기 버튼 폰트 */
+  #calc-btn {
+    font-size: 1.1rem;
+    padding: 14px;
+  }
+  
+  /* 초기화 버튼 위치 미세 조정 */
+  #reset-btn {
+    top: 15px;
+    right: 15px;
+    font-size: 1.6rem;
+  }
+}
